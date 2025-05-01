@@ -6,7 +6,7 @@ spring:
     name: usuarios-service
 
   config:
-    import: "configserver:http://config-server:8888"
+    import: "optional:configserver:http://config-server:8888"
 
   datasource:
     url: jdbc:mysql://mysql:3306/kala
@@ -28,6 +28,15 @@ spring:
 
   autoconfigure:
     exclude: org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
 
 eureka:
   client:
