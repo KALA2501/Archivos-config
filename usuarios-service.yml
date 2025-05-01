@@ -5,6 +5,9 @@ spring:
   application:
     name: usuarios-service
 
+  config:
+    import: "configserver:http://config-server:8888"
+
   datasource:
     url: jdbc:mysql://mysql:3306/kala
     username: root
@@ -28,7 +31,10 @@ spring:
 
 eureka:
   client:
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://discovery-service:8761/eureka
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
+    prefer-ip-address: true
