@@ -13,6 +13,7 @@ spring:
     gateway:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+        - AddResponseHeader=X-Frame-Options, ALLOWALL  # ✅ Permitir iframes globalmente
 
       globalcors:
         cors-configurations:
@@ -38,6 +39,13 @@ spring:
           uri: lb://usuarios-service
           predicates:
             - Path=/api/**
+
+        - id: juegos-service
+          uri: http://juegos-service:9094
+          predicates:
+            - Path=/api/juegos/**
+          filters:
+            - RewritePath=/api/juegos/(?<segment>.*), /games/${segment}
 
       httpserver:
         max-header-size: 65536
