@@ -13,7 +13,7 @@ spring:
     gateway:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
-        - AddResponseHeader=X-Frame-Options, ALLOWALL  # ✅ Permitir iframes globalmente
+        
 
       globalcors:
         cors-configurations:
