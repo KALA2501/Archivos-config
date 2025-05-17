@@ -1,0 +1,33 @@
+server:
+  port: 9094
+
+spring:
+  application:
+    name: juegos-service
+
+  config:
+    import: optional:configserver:http://config-server:8888
+
+juegos:
+  base-path: /games
+  metrics-endpoint: /send-metrics/{juego}
+  websocket-port: 9095
+
+mysql:
+  host: mysql
+  port: 3306
+  database: kala
+  user: root
+  password: admin
+
+eureka:
+  client:
+    enabled: false  # Este servicio Node no se registra automáticamente
+  instance:
+    instance-id: juegos-service:${random.uuid}
+    prefer-ip-address: true
+
+logging:
+  level:
+    root: INFO
+    juegos-service: DEBUG
