@@ -13,7 +13,6 @@ spring:
     gateway:
       default-filters:
         - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
-        
 
       globalcors:
         cors-configurations:
@@ -41,7 +40,7 @@ spring:
             - Path=/api/**
 
         - id: juegos-service
-          uri: http://juegos-service:9094
+          uri: http://localhost:9094
           predicates:
             - Path=/api/juegos/**
           filters:
